@@ -27,45 +27,83 @@ Problem Statement:
 
 Write a JavaScript function maxNonOverlappingClasses that takes an array of classes, where each class is represented by an object with start and end properties, and returns the maximum number of non-overlapping classes. */
 
-function maxNonOverlappingClasses(classes) {
-  classes.sort((a, b) => a.end - b.end);
+// function maxNonOverlappingClasses(classes) {
+//   classes.sort((a, b) => a.end - b.end);
 
-  let count = 0;
-  let lastEndTime = 0;
+//   let count = 0;
+//   let lastEndTime = 0;
 
-  for (const cls of classes) {
-    if (cls.start >= lastEndTime) {
-      count++;
-      lastEndTime = cls.end;
+//   for (const cls of classes) {
+//     if (cls.start >= lastEndTime) {
+//       count++;
+//       lastEndTime = cls.end;
+//     }
+//   }
+
+//   return count;
+// }
+
+// console.log(
+//   maxNonOverlappingClasses([
+//     { start: 1, end: 10 },
+//     { start: 2, end: 3 },
+//     { start: 4, end: 5 },
+//     { start: 6, end: 7 },
+//     { start: 8, end: 9 },
+//   ])
+// ); // Expected output: 4
+
+// console.log(
+//   maxNonOverlappingClasses([
+//     { start: 1, end: 2 },
+//     { start: 2, end: 3 },
+//     { start: 3, end: 4 },
+//   ])
+// ); // Expected output: 3
+
+// console.log(
+//   maxNonOverlappingClasses([
+//     { start: 1, end: 5 },
+//     { start: 2, end: 3 },
+//     { start: 3, end: 4 },
+//     { start: 4, end: 6 },
+//   ])
+// ); // Expected output: 2
+
+/*
+*Day3 
+Word Problem
+You are given a string consisting of only lowercase English letters. You need to find the length of the longest substring without repeating characters. Write a JavaScript function lengthOfLongestSubstring that returns this length.
+
+Problem Statement:
+
+Write a JavaScript function lengthOfLongestSubstring that takes a string as input and returns the length of the longest substring without repeating characters.
+
+
+*/
+
+function lengthOfLongestSubstring(str) {
+  let maxLength = 0;
+  let left = 0;
+  let right = 0;
+  let charSet = new Set();
+
+  while (right < str.length) {
+    if (!charSet.has(str[right])) {
+      charSet.add(str[right]);
+      maxLength = Math.max(maxLength, right - left + 1);
+      right++;
+    } else {
+      charSet.delete(str[left]);
+      left++;
     }
   }
-
-  return count;
+  return maxLength;
 }
 
-console.log(
-  maxNonOverlappingClasses([
-    { start: 1, end: 10 },
-    { start: 2, end: 3 },
-    { start: 4, end: 5 },
-    { start: 6, end: 7 },
-    { start: 8, end: 9 },
-  ])
-); // Expected output: 4
-
-console.log(
-  maxNonOverlappingClasses([
-    { start: 1, end: 2 },
-    { start: 2, end: 3 },
-    { start: 3, end: 4 },
-  ])
-); // Expected output: 3
-
-console.log(
-  maxNonOverlappingClasses([
-    { start: 1, end: 5 },
-    { start: 2, end: 3 },
-    { start: 3, end: 4 },
-    { start: 4, end: 6 },
-  ])
-); // Expected output: 2
+console.log(lengthOfLongestSubstring('abcabcbb')); // Expected output: 3
+console.log(lengthOfLongestSubstring('bbbbb')); // Expected output: 1
+console.log(lengthOfLongestSubstring('pwwkew')); // Expected output: 3
+console.log(lengthOfLongestSubstring('')); // Expected output: 0
+console.log(lengthOfLongestSubstring('au')); // Expected output: 2
+console.log(lengthOfLongestSubstring('dvdf')); // Expected output: 3
