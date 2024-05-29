@@ -82,28 +82,63 @@ Write a JavaScript function lengthOfLongestSubstring that takes a string as inpu
 
 */
 
-function lengthOfLongestSubstring(str) {
-  let maxLength = 0;
-  let left = 0;
-  let right = 0;
-  let charSet = new Set();
+// function lengthOfLongestSubstring(str) {
+//   let maxLength = 0;
+//   let left = 0;
+//   let right = 0;
+//   let charSet = new Set();
 
-  while (right < str.length) {
-    if (!charSet.has(str[right])) {
-      charSet.add(str[right]);
-      maxLength = Math.max(maxLength, right - left + 1);
-      right++;
-    } else {
-      charSet.delete(str[left]);
-      left++;
+//   while (right < str.length) {
+//     if (!charSet.has(str[right])) {
+//       charSet.add(str[right]);
+//       maxLength = Math.max(maxLength, right - left + 1);
+//       right++;
+//     } else {
+//       charSet.delete(str[left]);
+//       left++;
+//     }
+//   }
+//   return maxLength;
+// }
+
+// console.log(lengthOfLongestSubstring('abcabcbb')); // Expected output: 3
+// console.log(lengthOfLongestSubstring('bbbbb')); // Expected output: 1
+// console.log(lengthOfLongestSubstring('pwwkew')); // Expected output: 3
+// console.log(lengthOfLongestSubstring('')); // Expected output: 0
+// console.log(lengthOfLongestSubstring('au')); // Expected output: 2
+// console.log(lengthOfLongestSubstring('dvdf')); // Expected output: 3
+
+/* 
+*Day 4
+You are given an array of integers representing the prices of a stock on different days. You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. Write a JavaScript function maxProfit that returns the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+Problem Statement:
+
+Write a JavaScript function maxProfit that takes an array of integers prices as input and returns the maximum profit you can achieve from a single buy and sell operation.
+*/
+
+const maxProfit = (prices) => {
+  let minPrice = Infinity;
+  let maxProfit = 0;
+
+  // Iterate through the array of prices
+  for (let price of prices) {
+    // Update minPrice if the current price is lower
+    if (price < minPrice) {
+      minPrice = price;
+    }
+    // Calculate potential profit
+    let profit = price - minPrice;
+    // Update maxProfit if the potential profit is greater
+    if (profit > maxProfit) {
+      maxProfit = profit;
     }
   }
-  return maxLength;
-}
+  return maxProfit;
+};
 
-console.log(lengthOfLongestSubstring('abcabcbb')); // Expected output: 3
-console.log(lengthOfLongestSubstring('bbbbb')); // Expected output: 1
-console.log(lengthOfLongestSubstring('pwwkew')); // Expected output: 3
-console.log(lengthOfLongestSubstring('')); // Expected output: 0
-console.log(lengthOfLongestSubstring('au')); // Expected output: 2
-console.log(lengthOfLongestSubstring('dvdf')); // Expected output: 3
+console.log(maxProfit([7, 1, 5, 3, 6, 4])); // Expected output: 5
+console.log(maxProfit([7, 6, 4, 3, 1])); // Expected output: 0
+console.log(maxProfit([1, 2, 3, 4, 5])); // Expected output: 4
+console.log(maxProfit([2, 4, 1])); // Expected output: 2
+console.log(maxProfit([3, 2, 6, 5, 0, 3])); // Expected output: 4
