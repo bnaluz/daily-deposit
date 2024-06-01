@@ -117,28 +117,62 @@ Problem Statement:
 Write a JavaScript function maxProfit that takes an array of integers prices as input and returns the maximum profit you can achieve from a single buy and sell operation.
 */
 
-const maxProfit = (prices) => {
-  let minPrice = Infinity;
-  let maxProfit = 0;
+// const maxProfit = (prices) => {
+//   let minPrice = Infinity;
+//   let maxProfit = 0;
 
-  // Iterate through the array of prices
-  for (let price of prices) {
-    // Update minPrice if the current price is lower
-    if (price < minPrice) {
-      minPrice = price;
-    }
-    // Calculate potential profit
-    let profit = price - minPrice;
-    // Update maxProfit if the potential profit is greater
-    if (profit > maxProfit) {
-      maxProfit = profit;
+//   // Iterate through the array of prices
+//   for (let price of prices) {
+//     // Update minPrice if the current price is lower
+//     if (price < minPrice) {
+//       minPrice = price;
+//     }
+//     // Calculate potential profit
+//     let profit = price - minPrice;
+//     // Update maxProfit if the potential profit is greater
+//     if (profit > maxProfit) {
+//       maxProfit = profit;
+//     }
+//   }
+//   return maxProfit;
+// };
+
+// console.log(maxProfit([7, 1, 5, 3, 6, 4])); // Expected output: 5
+// console.log(maxProfit([7, 6, 4, 3, 1])); // Expected output: 0
+// console.log(maxProfit([1, 2, 3, 4, 5])); // Expected output: 4
+// console.log(maxProfit([2, 4, 1])); // Expected output: 2
+// console.log(maxProfit([3, 2, 6, 5, 0, 3])); // Expected output: 4
+
+/* 
+*Day 5
+You are given an array of integers. Your task is to find the length of the longest contiguous subarray that contains only unique integers. Write a JavaScript function longestUniqueSubarray that returns the length of this subarray.
+
+Problem Statement:
+
+Write a JavaScript function longestUniqueSubarray that takes an array of integers as input and returns the length of the longest contiguous subarray that contains only unique integers.
+*/
+
+function longestUniqueSubarray(nums) {
+  let maxLength = 0;
+  let right = 0;
+  let left = 0;
+  let charSet = new Set();
+
+  while (right < nums.length) {
+    if (!charSet.has(nums[right])) {
+      charSet.add(nums[right]);
+      maxLength = Math.max(maxLength, right - left + 1);
+      right++;
+    } else {
+      charSet.delete(nums[left]);
+      left++;
     }
   }
-  return maxProfit;
-};
+  return maxLength;
+}
 
-console.log(maxProfit([7, 1, 5, 3, 6, 4])); // Expected output: 5
-console.log(maxProfit([7, 6, 4, 3, 1])); // Expected output: 0
-console.log(maxProfit([1, 2, 3, 4, 5])); // Expected output: 4
-console.log(maxProfit([2, 4, 1])); // Expected output: 2
-console.log(maxProfit([3, 2, 6, 5, 0, 3])); // Expected output: 4
+console.log(longestUniqueSubarray([2, 1, 2, 3, 4, 1, 2, 3])); // Expected output: 4
+console.log(longestUniqueSubarray([1, 2, 3, 4, 5])); // Expected output: 5
+console.log(longestUniqueSubarray([5, 5, 5, 5, 5])); // Expected output: 1
+console.log(longestUniqueSubarray([2, 3, 4, 5, 2, 3, 4, 5])); // Expected output: 4
+console.log(longestUniqueSubarray([1, 2, 3, 1, 2, 3, 4, 5])); // Expected output: 5
