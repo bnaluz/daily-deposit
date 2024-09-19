@@ -200,27 +200,46 @@ console.log(dailyTemperatures([30, 60, 90])); // Expected output: [1, 1, 0]
 Solution:
 */
 
-function dailyTemperatures(temperatures) {
-  let result = new Array(temperatures.length).fill(0);
-  let stack = [];
+// function dailyTemperatures(temperatures) {
+//   let result = new Array(temperatures.length).fill(0);
+//   let stack = [];
 
-  for (let i = 0; i < temperatures.length; i++) {
-    while (
-      stack.length > 0 &&
-      temperatures[i] > temperatures[stack[stack.length - 1]]
-    ) {
-      let j = stack.pop();
-      result[j] = i - j;
-    }
-    stack.push(i);
+//   for (let i = 0; i < temperatures.length; i++) {
+//     while (
+//       stack.length > 0 &&
+//       temperatures[i] > temperatures[stack[stack.length - 1]]
+//     ) {
+//       let j = stack.pop();
+//       result[j] = i - j;
+//     }
+//     stack.push(i);
+//   }
+
+//   return result;
+// }
+
+// // Test Cases
+// console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])); // Expected output: [1, 1, 4, 2, 1, 1, 0, 0]
+// console.log(dailyTemperatures([30, 40, 50, 60])); // Expected output: [1, 1, 1, 0]
+// console.log(dailyTemperatures([30, 60, 90])); // Expected output: [1, 1, 0]
+// console.log(dailyTemperatures([90, 80, 70, 60])); // Expected output: [0, 0, 0, 0]
+// console.log(dailyTemperatures([30, 40, 30, 50, 20, 60])); // Expected output: [1, 2, 1, 1, 1, 0]
+
+//*Day 7
+//*Problem: Sum of All Numbers
+//*Write a function sumOfNumbers that takes an array of numbers and returns the sum of all the numbers in the array.
+
+function sumOfNumbers(arr) {
+  let sum = 0;
+
+  while (arr.length) {
+    sum += arr[0];
+    arr.shift();
   }
-
-  return result;
+  return sum;
 }
 
-// Test Cases
-console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])); // Expected output: [1, 1, 4, 2, 1, 1, 0, 0]
-console.log(dailyTemperatures([30, 40, 50, 60])); // Expected output: [1, 1, 1, 0]
-console.log(dailyTemperatures([30, 60, 90])); // Expected output: [1, 1, 0]
-console.log(dailyTemperatures([90, 80, 70, 60])); // Expected output: [0, 0, 0, 0]
-console.log(dailyTemperatures([30, 40, 30, 50, 20, 60])); // Expected output: [1, 2, 1, 1, 1, 0]
+console.log(sumOfNumbers([1, 2, 3, 4, 5])); // Expected output: 15
+console.log(sumOfNumbers([10, -2, 30, 4])); // Expected output: 42
+console.log(sumOfNumbers([])); // Expected output: 0
+console.log(sumOfNumbers([7])); // Expected output: 7
