@@ -229,17 +229,26 @@ Solution:
 //*Problem: Sum of All Numbers
 //*Write a function sumOfNumbers that takes an array of numbers and returns the sum of all the numbers in the array.
 
-function sumOfNumbers(arr) {
-  let sum = 0;
+// function sumOfNumbers(arr) {
+//   let sum = 0;
 
-  while (arr.length) {
-    sum += arr[0];
-    arr.shift();
-  }
-  return sum;
+//   while (arr.length) {
+//     sum += arr[0];
+//     arr.shift();
+//   }
+//   return sum;
+// }
+
+// console.log(sumOfNumbers([1, 2, 3, 4, 5])); // Expected output: 15
+// console.log(sumOfNumbers([10, -2, 30, 4])); // Expected output: 42
+// console.log(sumOfNumbers([])); // Expected output: 0
+// console.log(sumOfNumbers([7])); // Expected output: 7
+
+function sumOfNumbers(arr) {
+  return arr.reduce((acc, curr) => acc + curr, 0);
 }
 
-console.log(sumOfNumbers([1, 2, 3, 4, 5])); // Expected output: 15
+Example: console.log(sumOfNumbers([1, 2, 3, 4, 5])); // Expected output: 15
 console.log(sumOfNumbers([10, -2, 30, 4])); // Expected output: 42
 console.log(sumOfNumbers([])); // Expected output: 0
 console.log(sumOfNumbers([7])); // Expected output: 7
