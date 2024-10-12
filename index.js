@@ -244,11 +244,49 @@ Solution:
 // console.log(sumOfNumbers([])); // Expected output: 0
 // console.log(sumOfNumbers([7])); // Expected output: 7
 
-function sumOfNumbers(arr) {
-  return arr.reduce((acc, curr) => acc + curr, 0);
+// function sumOfNumbers(arr) {
+//   return arr.reduce((acc, curr) => acc + curr, 0);
+// }
+
+// Example: console.log(sumOfNumbers([1, 2, 3, 4, 5])); // Expected output: 15
+// console.log(sumOfNumbers([10, -2, 30, 4])); // Expected output: 42
+// console.log(sumOfNumbers([])); // Expected output: 0
+// console.log(sumOfNumbers([7])); // Expected output: 7
+
+//*START 2 Month learning plan */
+
+//? Day1
+/*
+Word Problem:
+Given an array of integers `nums` and an integer `target`, return the indices of the two numbers such that they add up to the target.  
+You may assume that each input has exactly one solution, and you may not use the same element twice.
+
+Problem Statement:
+Write a JavaScript function twoSum that takes an array of integers and a target sum, and returns the indices of the two numbers that add up to the target.
+
+Function Signature:
+*/
+
+function twoSum(nums, target) {
+  let mapy = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+
+    if (mapy.has(complement)) {
+      return [mapy.get(complement), i];
+    }
+    mapy.set(nums[i], i);
+  }
 }
 
-Example: console.log(sumOfNumbers([1, 2, 3, 4, 5])); // Expected output: 15
-console.log(sumOfNumbers([10, -2, 30, 4])); // Expected output: 42
-console.log(sumOfNumbers([])); // Expected output: 0
-console.log(sumOfNumbers([7])); // Expected output: 7
+console.log(twoSum([2, 7, 11, 15], 9)); // Expected output: [0, 1]
+console.log(twoSum([3, 2, 4], 6)); // Expected output: [1, 2]
+console.log(twoSum([3, 3], 6)); // Expected output: [0, 1]
+//!NOTES DAY 1:
+/*
+    1. Create a map to store elements with their indicies 
+    2. Iterate through the provided array, checking if the complement to the current index exists in the map 
+    3. If the element does NOT exist in map => store the element and its index in the map.set(nums[i],i)
+    4. Else store the element and index in the map
+*/
