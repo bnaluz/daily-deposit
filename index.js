@@ -267,22 +267,22 @@ Write a JavaScript function twoSum that takes an array of integers and a target 
 Function Signature:
 */
 
-function twoSum(nums, target) {
-  let mapy = new Map();
+// function twoSum(nums, target) {
+//   let mapy = new Map();
 
-  for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
+//   for (let i = 0; i < nums.length; i++) {
+//     const complement = target - nums[i];
 
-    if (mapy.has(complement)) {
-      return [mapy.get(complement), i];
-    }
-    mapy.set(nums[i], i);
-  }
-}
+//     if (mapy.has(complement)) {
+//       return [mapy.get(complement), i];
+//     }
+//     mapy.set(nums[i], i);
+//   }
+// }
 
-console.log(twoSum([2, 7, 11, 15], 9)); // Expected output: [0, 1]
-console.log(twoSum([3, 2, 4], 6)); // Expected output: [1, 2]
-console.log(twoSum([3, 3], 6)); // Expected output: [0, 1]
+// console.log(twoSum([2, 7, 11, 15], 9)); // Expected output: [0, 1]
+// console.log(twoSum([3, 2, 4], 6)); // Expected output: [1, 2]
+// console.log(twoSum([3, 3], 6)); // Expected output: [0, 1]
 //!NOTES DAY 1:
 /*
     1. Create a map to store elements with their indicies 
@@ -290,3 +290,45 @@ console.log(twoSum([3, 3], 6)); // Expected output: [0, 1]
     3. If the element does NOT exist in map => store the element and its index in the map.set(nums[i],i)
     4. Else store the element and index in the map
 */
+
+/*
+*Day 2
+Word Problem:
+Given two strings `s` and `t`, write a function to determine if `t` is an anagram of `s`.
+An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once.
+
+Problem Statement:
+Write a JavaScript function isAnagram that takes two strings as input and returns `true` if `t` is an anagram of `s`, and `false` otherwise.
+
+Function Signature:
+
+
+Example:
+console.log(isAnagram("anagram", "nagaram")); // Expected output: true
+console.log(isAnagram("rat", "car")); // Expected output: false
+console.log(isAnagram("listen", "silent")); // Expected output: true
+console.log(isAnagram("hello", "world")); // Expected output: false
+
+Solution:
+*/
+
+function isAnagram(s, t) {
+  if (s.length !== t.length) {
+    return false;
+  }
+
+  const count = new Array(26).fill(0);
+  const base = 'a'.charCodeAt(0);
+
+  for (let i = 0; i < s.length; i++) {
+    count[s.charCodeAt(i) - base]++;
+    count[t.charCodeAt(i) - base]--;
+  }
+
+  return count.every((value) => value === 0);
+}
+
+console.log(isAnagram('anagram', 'nagaram')); // Expected output: true
+console.log(isAnagram('rat', 'car')); // Expected output: false
+console.log(isAnagram('listen', 'silent')); // Expected output: true
+console.log(isAnagram('hello', 'world')); // Expected output: false
