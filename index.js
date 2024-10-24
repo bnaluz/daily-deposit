@@ -312,23 +312,23 @@ console.log(isAnagram("hello", "world")); // Expected output: false
 Solution:
 */
 
-function isAnagram(s, t) {
-  if (s.length !== t.length) {
-    return false;
-  }
+// function isAnagram(s, t) {
+//   if (s.length !== t.length) {
+//     return false;
+//   }
 
-  const count = new Array(26).fill(0);
-  const base = 'a'.charCodeAt(0);
+//   const count = new Array(26).fill(0);
+//   const base = 'a'.charCodeAt(0);
 
-  for (let i = 0; i < s.length; i++) {
-    count[s.charCodeAt(i) - base]++;
-    count[t.charCodeAt(i) - base]--;
-  }
+//   for (let i = 0; i < s.length; i++) {
+//     count[s.charCodeAt(i) - base]++;
+//     count[t.charCodeAt(i) - base]--;
+//   }
 
-  return count.every((value) => value === 0);
-}
+//   return count.every((value) => value === 0);
+// }
 
-console.log(isAnagram('anagram', 'nagaram')); // Expected output: true
-console.log(isAnagram('rat', 'car')); // Expected output: false
-console.log(isAnagram('listen', 'silent')); // Expected output: true
-console.log(isAnagram('hello', 'world')); // Expected output: false
+// console.log(isAnagram('anagram', 'nagaram')); // Expected output: true
+// console.log(isAnagram('rat', 'car')); // Expected output: false
+// console.log(isAnagram('listen', 'silent')); // Expected output: true
+// console.log(isAnagram('hello', 'world')); // Expected output: false
