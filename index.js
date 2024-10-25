@@ -332,3 +332,25 @@ Solution:
 // console.log(isAnagram('rat', 'car')); // Expected output: false
 // console.log(isAnagram('listen', 'silent')); // Expected output: true
 // console.log(isAnagram('hello', 'world')); // Expected output: false
+
+//*DAY 3
+// Problem: Two Sum
+// Given an array of integers nums and an integer target, return the indices of the two numbers such that they add up to target.
+// You may assume that each input would have exactly one solution, and you may not use the same element twice.
+// You can return the answer in any order.
+
+const twoSum = (arr, target) => {
+  const visited = {};
+  for (let i = 0; i < arr.length; i++) {
+    let complement = target - arr[i];
+    if (visited[complement] !== undefined) {
+      return [visited[complement], i];
+    }
+    visited[arr[i]] = i;
+  }
+  return [];
+};
+
+console.log(twoSum([2, 7, 11, 15], 9)); // Output: [0, 1]
+console.log(twoSum([3, 2, 4], 6)); // Output: [1, 2]
+console.log(twoSum([3, 3], 6)); // Output: [0, 1]
