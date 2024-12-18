@@ -337,20 +337,102 @@ Solution:
 // Problem: Two Sum
 // Given an array of integers nums and an integer target, return the indices of the two numbers such that they add up to target.
 // You may assume that each input would have exactly one solution, and you may not use the same element twice.
-// You can return the answer in any order.
+// // You can return the answer in any order.
 
-const twoSum = (arr, target) => {
-  const visited = {};
+// const twoSum = (arr, target) => {
+//   const visited = {};
+//   for (let i = 0; i < arr.length; i++) {
+//     let complement = target - arr[i];
+//     if (visited[complement] !== undefined) {
+//       return [visited[complement], i];
+//     }
+//     visited[arr[i]] = i;
+//   }
+//   return [];
+// };
+
+// console.log(twoSum([2, 7, 11, 15], 9)); // Output: [0, 1]
+// console.log(twoSum([3, 2, 4], 6)); // Output: [1, 2]
+// console.log(twoSum([3, 3], 6)); // Output: [0, 1]
+
+//*JS Methods practice (map,reduce,filter,for loops,date manipulations)
+const numbers = [1, 2, 3, 4, 5];
+
+function squareNumbers(nums) {
+  return nums.map((num) => {
+    return Math.pow(num, 2);
+  });
+}
+
+// console.log(squareNumbers(numbers));
+// Expected Output: [1, 4, 9, 16, 25]
+
+const nums = [10, 20, 30, 40];
+
+function sumArray(arr) {
+  return arr.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+  }, 0);
+}
+
+// console.log(sumArray(nums));
+// Expected Output: 100
+
+const words = ['hello', 'world', 'javascript', 'is', 'awesome'];
+
+function filterOddLengthStrings(arr) {
+  const result = [];
   for (let i = 0; i < arr.length; i++) {
-    let complement = target - arr[i];
-    if (visited[complement] !== undefined) {
-      return [visited[complement], i];
+    if (arr[i].length % 2 !== 0) {
+      result.push(arr[i]);
     }
-    visited[arr[i]] = i;
   }
-  return [];
+  return result;
+}
+
+// console.log(filterOddLengthStrings(words));
+// Expected Output: ['hello', 'world', 'awesome']
+
+// Devs like to abbreviate everything: k8s means Kubernetes, a11y means accessibility, l10n means localization. You get the Dev numeronyms by taking the first and the last letter and counting the number of letters in between. Words that have less than 4 letters aren't abbreviated, because that would just be odd. The input is a sentence, and you should abbreviate every word that is 4 letters long or longer. There won't be any punctuation in the sentence. g2d l2k e6e
+
+const input = 'Every developer likes to mix kubernetes and javascript';
+
+const makeNumeronym = (string) => {
+  const first = string[0];
+  const last = string[string.length - 1];
+  const middle = string.length - 2;
+
+  return first + middle + last;
 };
 
-console.log(twoSum([2, 7, 11, 15], 9)); // Output: [0, 1]
-console.log(twoSum([3, 2, 4], 6)); // Output: [1, 2]
-console.log(twoSum([3, 3], 6)); // Output: [0, 1]
+const lengthCheck = (word) => {
+  if (word.length > 4) {
+    return makeNumeronym(word);
+  } else {
+    return word;
+  }
+};
+
+console.log(input.split(' ').map(lengthCheck).join(' '));
+
+// const abbreviate = (string) => {
+//   const stringArr = string.split(' ');
+//   const endOutput = [];
+
+//   for (let i = 0; i < stringArr.length; i++) {
+//     if (stringArr[i].length >= 4) {
+//       let firstLetter = stringArr[i][0];
+//       let lastLetter = stringArr[i][stringArr[i].length - 1];
+//       let middleVals = stringArr[i].length - 2;
+//       let newVal = `${firstLetter}${middleVals}${lastLetter}`;
+//       endOutput.push(newVal);
+//     } else {
+//       endOutput.push(stringArr[i]);
+//     }
+//   }
+//   return endOutput.join(' ');
+// };
+
+// console.log(abbreviate(input));
+
+//expected output "E3y d7r l3s to mix k8s and j8t";
